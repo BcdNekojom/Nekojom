@@ -87,30 +87,79 @@
   nav{
     position:fixed; top:0; left:0; right:0; z-index:50;
     display:flex; align-items:center; justify-content:space-between;
-    padding:18px 6vw;
-    background:linear-gradient(to bottom, rgba(10,7,8,0.9), transparent);
+    gap:28px;
+    padding:14px 6vw;
+    background:linear-gradient(to bottom, rgba(10,7,8,0.88), rgba(10,7,8,0.55) 70%, transparent);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    transition:background-color .3s, border-color .3s;
   }
   .brand{
-    display:flex; align-items:center; gap:10px;
-    font-family:'Kanit'; font-weight:800; font-size:20px;
-    letter-spacing:0.05em;
+    display:flex; align-items:center; gap:11px;
+    font-family:'Kanit'; font-weight:800; font-size:19px;
+    letter-spacing:0.04em;
+    flex-shrink:0;
   }
   .brand .kanji{
-    color:var(--crimson);
-    font-size:22px;
-    text-shadow:0 0 18px rgba(200,16,46,0.7);
+    display:flex; align-items:center; justify-content:center;
+    width:34px; height:34px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, rgba(200,16,46,0.35), rgba(200,16,46,0.08) 70%);
+    border:1px solid rgba(200,16,46,0.45);
+    color:var(--ember);
+    flex-shrink:0;
   }
-  .navlinks{display:flex; gap:34px; font-size:14px; font-weight:500;}
-  .navlinks a{opacity:0.85; transition:opacity .2s, color .2s;}
-  .navlinks a:hover{opacity:1; color:var(--gold);}
+  .brand .kanji svg{
+    width:17px; height:17px;
+    filter:drop-shadow(0 0 6px rgba(255,77,94,0.65));
+  }
+  .navlinks{
+    display:flex; align-items:center; gap:8px;
+    font-size:14px; font-weight:500;
+    margin-right:auto;
+    margin-left:12px;
+  }
+  .navlinks a{
+    position:relative;
+    padding:8px 14px;
+    opacity:0.82;
+    border-radius:4px;
+    transition:opacity .2s, color .2s, background-color .2s;
+  }
+  .navlinks a::after{
+    content:"";
+    position:absolute;
+    left:14px; right:14px; bottom:4px;
+    height:2px;
+    background:var(--gold);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .25s ease;
+  }
+  .navlinks a:hover{opacity:1; color:var(--gold); background:rgba(232,180,92,0.06);}
+  .navlinks a:hover::after{transform:scaleX(1);}
   .nav-cta{
-    border:1px solid var(--gold);
-    padding:9px 20px;
-    border-radius:2px;
+    position:relative;
+    display:inline-flex; align-items:center; gap:6px;
+    background:linear-gradient(135deg, var(--crimson), var(--crimson-2));
+    color:#fff;
+    border:1px solid rgba(232,180,92,0.5);
+    padding:10px 22px;
+    border-radius:999px;
     font-size:13px;
-    font-weight:600;
-    letter-spacing:0.05em;
+    font-weight:700;
+    letter-spacing:0.03em;
+    box-shadow:0 4px 16px rgba(200,16,46,0.35), inset 0 0 0 1px rgba(255,255,255,0.04);
+    transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    flex-shrink:0;
   }
+  .nav-cta:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.08);
+    box-shadow:0 6px 22px rgba(200,16,46,0.5), inset 0 0 0 1px rgba(255,255,255,0.08);
+  }
+  .nav-cta:active{transform:translateY(0);}
   .hamburger{
     display:none;
     flex-direction:column;
@@ -742,7 +791,7 @@
 <body>
 
 <nav>
-  <div class="brand"><span class="kanji">橘猫</span>Nekojom</div>
+  <div class="brand"><span class="kanji"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="12" cy="16.2" rx="6.1" ry="5.1"/><ellipse cx="4.6" cy="9.3" rx="2.35" ry="3.05"/><ellipse cx="9.7" cy="5.3" rx="2.35" ry="3.05"/><ellipse cx="14.3" cy="5.3" rx="2.35" ry="3.05"/><ellipse cx="19.4" cy="9.3" rx="2.35" ry="3.05"/></svg></span>Nekojom</div>
   <div class="navlinks">
     <a href="#steps">วิธีเติม</a>
     <a href="#pricing">แพ็กเกจ</a>
@@ -915,7 +964,7 @@
 
 <footer>
   <div>
-    <div class="brand"><span class="kanji" style="color:#c8102e">橘猫</span> Nekojom</div>
+    <div class="brand"><span class="kanji" style="color:#c8102e"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="12" cy="16.2" rx="6.1" ry="5.1"/><ellipse cx="4.6" cy="9.3" rx="2.35" ry="3.05"/><ellipse cx="9.7" cy="5.3" rx="2.35" ry="3.05"/><ellipse cx="14.3" cy="5.3" rx="2.35" ry="3.05"/><ellipse cx="19.4" cy="9.3" rx="2.35" ry="3.05"/></svg></span> Nekojom</div>
     <p class="fine" style="margin-top:14px;">บริการเติม Robux ราคาพิเศษ ไว ปลอดภัย ดูแลโดยแอดมินที่พร้อมช่วยเหลือตลอดเวลาทำการ</p>
   </div>
   <p class="fine">© 2026 Nekojom · Nekojom</p>
@@ -1063,7 +1112,8 @@
     { title: "LUZ ROJA", src: "music/LUZ ROJA.mp3" },
     { title: "Amor Na Praia (SLOWED + REVERB)", src: "music/Amor Na Praia SLOWEDREVERB.mp3" },
     { title: "MONTAGEM PEGADORA (Slowed) [Extended]", src: "music/MONTAGEM PEGADORA Slowed Extended.mp3" },
-    { title: "MENTE MÁ (Slowed)", src: "music/MENTE M Slowed.mp3" }
+    { title: "MENTE MÁ (Slowed)", src: "music/MENTE M Slowed.mp3" },
+    { title: "ncts - NEXT! [Brazilian Phonk]", src: "music/ncts - NEXT_ Brazilian Phonk.mp3" }
   ];
 
   const audio = new Audio();
